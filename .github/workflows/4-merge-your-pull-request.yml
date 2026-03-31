@@ -35,11 +35,11 @@ jobs:
               state: 'all',
               sort: 'created',
               direction: 'desc',
-              per_page: 50
+              per_page: 100
             });
             const exerciseIssue = issues.data
               .filter(i => !i.pull_request)
-              .find(i => i.title.includes('Exercise'));
+              .find(i => i.title.toLowerCase().includes('exercise'));
             if (exerciseIssue && exerciseIssue.state === 'closed') {
               await github.rest.issues.update({
                 owner: context.repo.owner,
